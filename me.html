@@ -34,6 +34,8 @@
 
     .titlebar span:first-child {
       padding: 5px 10px;
+      display: flex;
+      align-items: center;
     }
 
     .titlebar-buttons {
@@ -86,17 +88,7 @@
     }
     .taskbar-btn:hover { background: rgba(255, 255, 255, 0.3); }
 
-    img { max-width: 100%; }
-    blockquote {
-      border-left: 3px solid #fff;
-      padding-left: 15px;
-      color: #fff;
-      text-align: left;
-      margin: 0;
-    }
-    blockquote p { margin: 5px 0; }
     a { color: #6af; }
-    ul { text-align: left; }
     .nav-bottom { margin-top: 10px; }
     .nav-bottom p { margin: 2px 0; }
   </style>
@@ -105,27 +97,18 @@
 
   <div class="window main-window" id="mainWindow">
     <div class="titlebar" onmousedown="startDrag(event, 'mainWindow')">
-      <span>a nameless guy's site</span>
+      <span>me</span>
       <div class="titlebar-buttons">
         <span class="btn-minimize" onclick="minimize('mainWindow')">─</span>
         <span class="btn-close" onclick="closeWindow('mainWindow')">✕</span>
       </div>
     </div>
     <div class="window-body" id="mainBody">
-      <img src="https://anamelessguy1.github.io/img/88x31.png" alt="88x31">
-      <h2>welcome!</h2>
-      <h6>use my 88x31 pls</h6>
-
-      <blockquote>
-        <p>hello i'm a nameless guy (ang for short), im just a guy on the internet that is chronically online, im a linux nerd and i also like tech very much.</p>
-        <p>games i play: <span id="games-toggle" style="cursor: pointer; font-size: 28px;" onclick="toggleGames()">▸</span> <span id="games" style="display: none;">Geometry Dash / Friday Night Funkin' / Minecraft / osu!</span></p>
-      </blockquote>
-
-      <h2>links:</h2>
-      <ul>
-        <li><a href="https://discord.com/users/1395046291662438450/">my discord</a></li>
-        <li><a href="https://github.com/anamelessguy1">my github (check out my projects there)</a></li>
-      </ul>
+      <h3>me:</h3>
+      <p>i use my laptop to use discord, watch youtube, sometimes do gaming, or make random shit and that's mostly it</p>
+      <p>my laptop is a dell inspiron 5570 running artix linux (runit), it's actually more than enough for me for what i do, i only upgraded it from an hdd to ssd</p>
+      <h3>programming langs:</h3>
+      <p>python (A LOT) / HTML, CSS and JS (not a lot of js) / Lua</p>
     </div>
   </div>
 
@@ -139,28 +122,17 @@
     </div>
     <div class="window-body" id="navBody">
       <div class="nav-bottom">
-        <p>index (current)</p>
-        <p><a href="me.html">me</a></p>
+        <p><a href="index.html">index</a></p>
+        <p>me (current)</p>
       </div>
     </div>
-  </div>
-
-  <div style="position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.15); padding: 8px 10px; display: flex; gap: 5px; flex-wrap: wrap; justify-content: center;">
-    <a href="https://oli.xenia.gay/"><img src="https://oli.xenia.gay/button.gif"></a>
-    <a href="https://88x31.nl/gifs/anythingbut.gif"><img src="https://88x31.nl/gifs/anythingbut.gif"></a>
-    <a href="https://88x31.nl/gifs/antinazi.gif"><img src="https://88x31.nl/gifs/antinazi.gif"></a>
-    <a href="https://www.mozilla.org/firefox/"><img src="https://88x31.nl/gifs/firefoxnow.gif"></a>
-    <a href="https://artixlinux.org"><img src="https://anamelessguy1.github.io/img/artix.gif"></a>
-    <a href="https://anamelessguy1.github.io/img/linuxnow2.gif"><img src="https://anamelessguy1.github.io/img/linuxnow2.gif"></a>
-    <a href="https://anamelessguy1.github.io/img/transnow2.gif"><img src="https://anamelessguy1.github.io/img/transnow2.gif"></a>
-    <a href="https://ublockorigin.com"><img src="https://anamelessguy1.github.io/img/ublock-now.webp"></a>
   </div>
 
   <div class="taskbar" id="taskbar"></div>
 
   <script>
     const titles = {
-      mainWindow: "a nameless guy's site",
+      mainWindow: "me",
       navWindow: "nav"
     };
 
@@ -213,18 +185,6 @@
     }
 
     loadPositions();
-
-    function toggleGames() {
-      const games = document.getElementById('games');
-      const toggle = document.getElementById('games-toggle');
-      if (games.style.display === 'none') {
-        games.style.display = 'inline';
-        toggle.textContent = '▾';
-      } else {
-        games.style.display = 'none';
-        toggle.textContent = '▸';
-      }
-    }
 
     function addToTaskbar(id) {
       const btn = document.createElement('button');
