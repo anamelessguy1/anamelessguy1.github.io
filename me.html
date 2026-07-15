@@ -64,8 +64,8 @@
 
     .window-body { padding: 20px; }
 
-    .main-window { top: 40px; left: 400px; max-width: 700px; width: 50%; }
-    .nav-window { top: 40px; right: 500px; width: 180px; }
+    .main-window { max-width: 700px; width: 50%; }
+    .nav-window { width: 180px; }
 
     .taskbar {
       position: fixed;
@@ -173,6 +173,7 @@
     }
 
     function loadPositions() {
+      let found = false;
       ['mainWindow', 'navWindow'].forEach(id => {
         const pos = JSON.parse(sessionStorage.getItem(id + '-pos'));
         if (pos) {
@@ -180,8 +181,22 @@
           el.style.left = pos.left;
           el.style.top = pos.top;
           el.style.right = 'auto';
+          found = true;
         }
       });
+      if (!found) centerWindows();
+    }
+
+    function centerWindows() {
+      const main = document.getElementById('mainWindow');
+      const nav = document.getElementById('navWindow');
+      const gap = 10;
+      const totalW = main.offsetWidth + nav.offsetWidth + gap;
+      const startLeft = (window.innerWidth - totalW) / 2;
+      main.style.left = startLeft + 'px';
+      main.style.top = '5vh';
+      nav.style.left = (startLeft + main.offsetWidth + gap) + 'px';
+      nav.style.top = '5vh';
     }
 
     loadPositions();
